@@ -9,6 +9,10 @@ public class learnAPI : MonoBehaviour
 
     public Transform cube;
 
+    public Light DirectionalLight;
+
+    public Camera cam;
+
     private void Start()
     {
         print(sphere.layer);
@@ -16,6 +20,10 @@ public class learnAPI : MonoBehaviour
         print("球的坐标：" + tra.position);
 
         tra.localScale = new Vector3(7, 7, 7);
+        DirectionalLight.color= new Color(0.8f, 0, 0);
+        DirectionalLight.Reset();
+
+        cam.orthographicSize = 3;
     }
 
     private void Update()
