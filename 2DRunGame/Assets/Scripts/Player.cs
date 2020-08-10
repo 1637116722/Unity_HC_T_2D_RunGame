@@ -121,22 +121,37 @@ public class Player : MonoBehaviour
         and.PlayOneShot(soundHit);
         imagehp.fillAmount = hp / hpMax;
         Destroy(obj);
+
+        if (hp <= 0) Dead();
     }
+    [Header("结束画面")]
+    public GameObject final;
+
+    private bool dead;
 
     /// <summary>
     /// 死亡
     /// </summary>
     private void Dead()
     {
-
+        ani.SetTrigger("死亡触发");
+        final.SetActive(true);
+        speed = 0;
+        dead = true;
     }
+    [Header("过关标题与金币")]
+    public Text textTitle;
+    public Text textFinalCion;
 
     /// <summary>
     /// 過關
     /// </summary>
     private void Pass()
     {
-
+        speed = 0;
+        final.SetActive(true);
+        textTitle.text = "恭喜，呵呵";
+        textFinalCion.text = "本次金币数量" + coin;
     }
 
     #endregion
@@ -149,6 +164,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (dead) return;
+
+        if (transform.position.y <= -5) Dead();
         Jump();
         Slide();
         Move();
@@ -160,6 +178,8 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "金币") EatCoin(collision.gameObject);
+        if (collision.tag == "障礙物") Hit(collision.gameObject);
+        if (collision.name == "傳送門") Pass();
     }
 
 
