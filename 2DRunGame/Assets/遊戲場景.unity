@@ -8565,7 +8565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454519892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9100037, y: -1.53, z: 0}
+  m_LocalPosition: {x: -2.18, y: -1.53, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8640,7 +8640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jump: 350
+  jump: 380
   hp: 500
   isGround: 0
   coin: 0
@@ -8648,10 +8648,12 @@ MonoBehaviour:
   soundSlide: {fileID: 8300000, guid: 10c6c831cdb60b648883d27984758af3, type: 3}
   soundJump: {fileID: 8300000, guid: 10c6c831cdb60b648883d27984758af3, type: 3}
   soundCoin: {fileID: 8300000, guid: c45939a2f681d464cbbbdbcc3604ffc9, type: 3}
+  textcoin: {fileID: 1376987092}
   ani: {fileID: 1454519895}
   rid: {fileID: 1454519896}
   cap: {fileID: 1454519897}
   and: {fileID: 1454519899}
+  imagehp: {fileID: 0}
 --- !u!82 &1454519899
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14701,11 +14703,11 @@ GameObject:
   - component: {fileID: 1920742207}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: "\u969C\u788D\u7269"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1920742207
 MonoBehaviour:
   m_ObjectHideFlags: 0

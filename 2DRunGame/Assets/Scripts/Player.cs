@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class Player : MonoBehaviour
     public AudioClip soundSlide;
     public AudioClip soundJump;
     public AudioClip soundCoin;
+
+    [Header("金币数量")]
+    public Text textcoin;
+    
+
 
     public Animator ani;
     public Rigidbody2D rid;
@@ -94,17 +100,27 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 吃金幣
     /// </summary>
-    private void EatCoin()
+    /// <param name="obj"></param>
+    private void EatCoin(GameObject obj)
     {
-
+        coin++;
+        and.PlayOneShot(soundCoin, 1.2f);
+        textcoin.text = "金币数量:" + coin;
+        Destroy(obj, 0);
     }
+    [Header("血条")]
+    public Image imagehp;
+    private float hpMax;
 
     /// <summary>
     /// 受傷
     /// </summary>
-    private void Hit()
+    private void Hit(GameObject obj)
     {
-
+        hp -= 30;
+        and.PlayOneShot(soundHit);
+        imagehp.fillAmount = hp / hpMax;
+        Destroy(obj);
     }
 
     /// <summary>
@@ -128,7 +144,7 @@ public class Player : MonoBehaviour
     #region 事件
     private void Start()
     {
-
+        hpMax = hp;
     }
 
     private void Update()
@@ -137,6 +153,16 @@ public class Player : MonoBehaviour
         Slide();
         Move();
     }
+
+    //碰撞(触发)事件
+    //两个物件必须有一个勾选Is Trigger
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "金币") EatCoin(collision.gameObject);
+    }
+
+
     //绘制图示事件
     private void OnDrawGizmos()
     {
